@@ -1,4 +1,4 @@
-# 🌊 Water Shader
+# Water Shader
 
 A real-time water simulation demo built with OpenGL, using tessellation and Gerstner wave modeling to create a dynamic, animated water surface. This project leverages advanced shaders to simulate wave motion, lighting, and texture-based reflections, offering interactive 3D camera controls for user exploration.
 
