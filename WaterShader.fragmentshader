@@ -1,0 +1,36 @@
+#version 400 core
+
+// Input from geometry shader
+in vec3 gsNormal;
+in vec3 gsEyeDir;
+in vec3 gsLightDir;
+in vec2 gsUV;
+
+// Output color
+out vec4 FragColor;
+
+// Uniforms
+uniform sampler2D waterTex;
+uniform float time;
+uniform vec3 specularColor;
+uniform vec3 ambientLight;
+uniform float shininess;
+
+void main() {
+    vec4 MaterialDiffuseColor = texture(waterTex, gsUV);
+    vec4 MaterialAmbientColor = vec4(ambientLight, 1.0) * MaterialDiffuseColor;
+    vec4 MaterialSpecularColor = vec4(specularColor * 0.2, 1.0);
+
+    vec3 n = normalize(gsNormal);
+    vec3 l = normalize(gsLightDir);
+    vec3 e = normalize(gsEyeDir);
+    vec3 r = reflect(-l, n);
+
+    float cosTheta = clamp(dot(n, l), 0.0, 1.0);
+    float cosAlpha = clamp(dot(e, r), 0.0, 1.0);
+
+    FragColor =
+        MaterialAmbientColor +
+        MaterialDiffuseColor * cosTheta +
+        MaterialSpecularColor * pow(cosAlpha, shininess);
+}

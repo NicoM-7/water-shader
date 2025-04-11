@@ -1,0 +1,41 @@
+#version 400 core
+layout(quads, equal_spacing, cw) in;
+
+in vec3 tcWorldPos[];
+in vec2 tcUV[];
+in vec3 tcLightDir[];
+in vec3 tcEyeDir[];
+
+out vec3 teWorldPos;
+out vec2 teUV;
+out vec3 teLightDir;
+out vec3 teEyeDir;
+
+void main(){
+    vec3 pos = mix(
+                mix(tcWorldPos[0], tcWorldPos[1], gl_TessCoord.x),
+                mix(tcWorldPos[3], tcWorldPos[2], gl_TessCoord.x),
+                gl_TessCoord.y);
+                
+    vec2 uv = mix(
+                mix(tcUV[0], tcUV[1], gl_TessCoord.x),
+                mix(tcUV[3], tcUV[2], gl_TessCoord.x),
+                gl_TessCoord.y);
+    
+    vec3 lightDir = mix(
+                mix(tcLightDir[0], tcLightDir[1], gl_TessCoord.x),
+                mix(tcLightDir[3], tcLightDir[2], gl_TessCoord.x),
+                gl_TessCoord.y);
+                
+    vec3 eyeDir = mix(
+                mix(tcEyeDir[0], tcEyeDir[1], gl_TessCoord.x),
+                mix(tcEyeDir[3], tcEyeDir[2], gl_TessCoord.x),
+                gl_TessCoord.y);
+                
+    teWorldPos = pos;
+    teUV = uv;
+    teLightDir = lightDir;
+    teEyeDir = eyeDir;
+    
+    gl_Position = vec4(pos, 1.0);
+}

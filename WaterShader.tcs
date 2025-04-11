@@ -1,0 +1,32 @@
+#version 400 core
+layout(vertices = 4) out;
+
+in vec3 vWorldPos[];
+in vec2 vUV[];
+in vec3 vLightDir[];
+in vec3 vEyeDir[];
+
+out vec3 tcWorldPos[];
+out vec2 tcUV[];
+out vec3 tcLightDir[];
+out vec3 tcEyeDir[];
+
+uniform float tessLevelInner;
+uniform float tessLevelOuter;
+
+void main(){
+    tcWorldPos[gl_InvocationID] = vWorldPos[gl_InvocationID];
+    tcUV[gl_InvocationID] = vUV[gl_InvocationID];
+    tcLightDir[gl_InvocationID] = vLightDir[gl_InvocationID];
+    tcEyeDir[gl_InvocationID] = vEyeDir[gl_InvocationID];
+    
+    if (gl_InvocationID == 0) {
+        gl_TessLevelInner[0] = tessLevelInner;
+        gl_TessLevelOuter[0] = tessLevelOuter;
+        gl_TessLevelOuter[1] = tessLevelOuter;
+        gl_TessLevelOuter[2] = tessLevelOuter;
+        gl_TessLevelOuter[3] = tessLevelOuter;
+    }
+    
+    gl_out[gl_InvocationID].gl_Position = vec4(vWorldPos[gl_InvocationID], 1.0);
+}
