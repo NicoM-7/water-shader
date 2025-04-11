@@ -50,7 +50,7 @@ Follow these steps to configure your environment on Windows using MSYS2:
 1. Clone the repository
    ```bash
    git clone https://github.com/NicoM-7/water-shader.git
-   cd spline-tool
+   cd water-shader
    ```
 2. Open `WaterShader.cpp` in [Visual Studio Code](https://code.visualstudio.com/)
 3. From the top menu, go to: `Terminal` → `Run Build Task`
