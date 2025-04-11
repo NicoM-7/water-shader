@@ -4,7 +4,7 @@ A real-time water simulation demo built with OpenGL, using tessellation and Gers
 
 ## Preview
 
-![Water Shader](WaterShader.gif) 
+![Water Shader](WaterShader.gif)
 
 ## Features
 
@@ -22,12 +22,15 @@ Follow these steps to configure your environment on Windows using MSYS2:
 1. [**Install MSYS2**](https://www.msys2.org/) and install it in `C:\msys64`
 
 2. **Open the MSYS2 MINGW64 terminal**, then run:
+
    ```bash
    pacman -Syu
    ```
+
    _(The terminal will close after updating. Reopen the MINGW64 terminal to continue.)_
 
 3. **Install required packages**:
+
    ```bash
    pacman -S mingw-w64-x86_64-toolchain \
                mingw-w64-x86_64-freeglut \
@@ -44,6 +47,11 @@ Follow these steps to configure your environment on Windows using MSYS2:
 
 ## Build and Run
 
-1. Open `WaterShader.cpp` in [Visual Studio Code](https://code.visualstudio.com/)
-2. From the top menu, go to: `Terminal` → `Run Build Task`
-3. Locate and double-click the built executable (`WaterShader.exe`) to launch the simulation
+1. Clone the repository
+   ```bash
+   git clone https://github.com/NicoM-7/water-shader.git
+   cd spline-tool
+   ```
+2. Open `WaterShader.cpp` in [Visual Studio Code](https://code.visualstudio.com/)
+3. From the top menu, go to: `Terminal` → `Run Build Task`
+4. Locate and double-click the built executable (`waterShader.exe`) to launch the simulation
